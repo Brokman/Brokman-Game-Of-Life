@@ -1,18 +1,18 @@
 <?php
 class Grid {
 
-    public int $colNum;
-    public int $rowNum;
+    public $colNum;
+    public $rowNum;
 
-    public array $mainGrid;
-    public array $nextGrid;
+    public $mainGrid;
+    public $nextGrid;
 
-    public int $livingCell = 0;
-    public int $lastTurnBorn = 0;
-    public int $everBornCell = 0;
-    public int $lastTurnDead = 0;
-    public int $everDeadCell = 0;
-    private int $lastTurnLiving = 0;
+    public $livingCell = 0;
+    public $lastTurnBorn = 0;
+    public $everBornCell = 0;
+    public $lastTurnDead = 0;
+    public $everDeadCell = 0;
+    private $lastTurnLiving = 0;
 
     //Crée une grid vide
     public function __construct(int $col, int $row) 
