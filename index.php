@@ -1,41 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <?php require 'base.php' ?>
-</head>
-<body>
-    <!-- <table>
-        <?php 
-            for ($i=0; $i < $colNum; $i++) { 
-                echo '<tr>';
-                for ($j=0; $j < $rowNum; $j++) { 
-                    echo '<td>' . $grid[$i][$j] . '</td>';
-                }
-            echo '</tr>';
-            } ?>
-    </table> -->
+<?php
+$title = 'Homepage';
+require_once './data/config.php';
+require 'elements/header.php';
+?>
 
-    <hr>
+<h1>Brokman's Game of Life</h1>
 
-    <table style="border: 1px solid; width:800px; height:800px; empty-cells: show; table-layout:fixed;">
-        <?php for ($i=0; $i < $colNum; $i++) : ?>
-            <tr style="border: 0;">
-            <?php for ($j=0; $j < $rowNum; $j++) : ?> 
-                <td style="border: 0.1px solid; <?php if($nextGrid[$i][$j] === 1) {echo 'background-color:black;';}?>">   </td>
-            <?php endfor ?>
-            </tr>
-        <?php endfor ?>
-    </table>
-            
-    <form action="" method="post">
-        <button type="submit">Next</button>
-    </form>
+<!-- END OF STICKY AREA -->
+</div>
+
+<form action="/game.php" method="post" class="form-main">
+    <h3>Select your grid options :</h3>
+    <label for="title" class="form-label mt-0">
+        <div class="label-title">Grid Title :</div>
+        <div class="input-control">
+            <input type="text" id="title" name="grid-title" placeholder="((optional))">     
+        </div>   
+    </label>
+    <div class="form-num-group">
+        <label for="col-num" class="form-label">
+            <div class="label-title">Number of colones :</div>
+            <div class="input-control">
+                <input type="number" id="col-num" name="col-num" required>     
+            </div>   
+        </label>
+        <label for="row-num" class="form-label">
+            <div class="label-title">Number of rows :</div>
+            <div class="input-control">
+                <input type="number" id="row-num" name="row-num" required>   
+            </div>
+        </label>
+    </div>
+    <button type="submit" class="btn">Generate</button>
+</form>
+<div class="separating-sentence">
+    <p>- or -</p>
+</div>
+<form action="/game.php" method="post" class="form-main">
+    <h3>Select an existing grid :</h3>
+    <div class="form-select-group">
+        <select name="grid-file" id="grid-file" >
+            <?php foreach(GRIDS as $k => $file): ?>
+                <?= option($k, $file) ?>
+            <?php endforeach ?>
+        </select>
+    </div>
+    <button type="submit" class="btn">Load</button>
+</form>
 
 
-    <hr>
-</body>
-</html>
+
+<? 
+require 'elements/footer.php';
+?>
